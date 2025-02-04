@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JobApply AI - Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* (Reuse shared CSS from above) */
+    :root {
+      --primary-color: #007acc;
+      --secondary-color: #005fa3;
+      --accent-color: #ff4081;
+      --background-color: #111;
+      --card-bg: rgba(26,26,26,0.9);
+      --text-color: #eee;
+      --header-bg: rgba(0, 0, 0, 0.85);
+      --transition-speed: 0.4s;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: 'Poppins', sans-serif; background: var(--background-color); color: var(--text-color); line-height: 1.6; }
+    a { color: var(--text-color); text-decoration: none; transition: color var(--transition-speed) ease; }
+    a:hover { color: var(--accent-color); }
+    .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+    header { position: fixed; top: 0; width: 100%; background: var(--header-bg); padding: 1.2rem 0; z-index: 1000; backdrop-filter: blur(5px); transition: padding var(--transition-speed) ease; box-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+    header.shrink { padding: 0.8rem 0; background: rgba(0,0,0,0.95); }
+    header .container { display: flex; justify-content: space-between; align-items: center; }
+    header h1 { font-size: 1.8rem; letter-spacing: 1px; background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; transition: font-size var(--transition-speed) ease; }
+    header.shrink h1 { font-size: 1.6rem; }
+    nav a { margin-left: 1.5rem; font-weight: 600; font-size: 1rem; }
+    footer { background: var(--card-bg); padding: 2rem 0; text-align: center; font-size: 0.9rem; color: #aaa; }
+    .animate-on-scroll { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+    .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+    /* Profile Section Styles */
+    .profile { padding: 4rem 0; margin-top: 4.5rem; text-align: center; }
+    .profile .container { max-width: 800px; margin: 0 auto; }
+    .profile h2 { font-size: 2.5rem; margin-bottom: 1rem; font-weight: 600; }
+    .profile .profile-info {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+      text-align: left;
+    }
+    .profile .profile-info p { margin-bottom: 1rem; font-size: 1.1rem; color: #ccc; }
+  </style>
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header id="header">
+    <div class="container">
+        <h1>JobApply AI</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="job-finder.html">Job Finder</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="applications.html">Applications</a>
+            <a href="profile.html">Profile</a>
+            <a href="settings.html">Settings</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+  <!-- Profile Section -->
+  <section class="profile animate-on-scroll" id="profile">
+    <div class="container">
+      <h2>My Profile</h2>
+      <div class="profile-info">
+        <p><strong>Name:</strong> Jane Doe</p>
+        <p><strong>Email:</strong> jane.doe@example.com</p>
+        <p><strong>Location:</strong> 90210</p>
+        <p><strong>Experience:</strong> 5 years in Software Development</p>
+        <p><strong>Skills:</strong> JavaScript, React, Node.js, Python</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container">
+      <p>&copy; 2025 JobApply AI. All Rights Reserved.</p>
+      <p>Harvard Business Class Project</p>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('header');
+      header.classList.toggle('shrink', window.scrollY > 50);
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+      const scrollElements = document.querySelectorAll('.animate-on-scroll');
+      const elementInView = (el, dividend = 1) => {
+        const elementTop = el.getBoundingClientRect().top;
+        return elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend;
+      };
+      const displayScrollElement = (element) => element.classList.add('visible');
+      const handleScrollAnimation = () => {
+        scrollElements.forEach(el => {
+          if(elementInView(el, 1.25)){
+            displayScrollElement(el);
+          }
+        });
+      };
+      window.addEventListener('scroll', handleScrollAnimation);
+      handleScrollAnimation();
+    });
+  </script> <script src="js/script.js"></script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const restrictedPages = ["dashboard.html", "applications.html", "profile.html", "settings.html"];
+        const currentPage = window.location.pathname.split("/").pop();
+
+        if (restrictedPages.includes(currentPage)) {
+            const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+            if (!isLoggedIn) {
+                alert("You must be logged in to access this page.");
+                window.location.href = "login.html";
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

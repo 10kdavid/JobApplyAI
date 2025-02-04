@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JobApply AI - Home</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* CSS Variables for Consistent Theming */
+    :root {
+      --primary-color: #007acc;
+      --secondary-color: #005fa3;
+      --accent-color: #ff4081;
+      --background-color: #111;
+      --card-bg: rgba(26,26,26,0.9);
+      --text-color: #eee;
+      --header-bg: rgba(0, 0, 0, 0.85);
+      --transition-speed: 0.4s;
+    }
+
+    /* Global Reset & Base Styles */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    a {
+      color: var(--text-color);
+      text-decoration: none;
+      transition: color var(--transition-speed) ease;
+    }
+    a:hover {
+      color: var(--accent-color);
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--header-bg);
+      padding: 1.2rem 0;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+      transition: padding var(--transition-speed) ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+    header.shrink {
+      padding: 0.8rem 0;
+      background: rgba(0,0,0,0.95);
+    }
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: font-size var(--transition-speed) ease;
+    }
+    header.shrink h1 {
+      font-size: 1.6rem;
+    }
+    nav a {
+      margin-left: 1.5rem;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    /* Hero Section (Solid Black Background) */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: #000;
+      margin-top: 4.5rem; /* Offset for fixed header */
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      animation: fadeInUp 1s ease forwards;
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .hero p {
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      margin-bottom: 2rem;
+    }
+    button, .btn {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border: none;
+      padding: 0.9rem 2rem;
+      font-size: 1rem;
+      color: #fff;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    button:hover, .btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    }
+    button:active, .btn:active {
+      transform: translateY(2px);
+    }
+
+    /* New Section: Features & How It Works (Left Aligned) */
+    .features-details {
+      padding: 4rem 0;
+      background: var(--background-color);
+    }
+    .features-details .container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left; /* Left-align the text */
+    }
+    /* Gradient headers with stronger blue-to-pink */
+    .gradient-header {
+      background: linear-gradient(to right, #007acc, #ff4081);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 2.5rem;
+      margin: 1rem 0;
+      font-weight: 600;
+    }
+    .sub-header {
+      font-size: 1.75rem;
+      margin: 0.5rem 0 1rem;
+      font-weight: 500;
+      color: #fff;
+    }
+    .features-details p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #ccc;
+      line-height: 1.5;
+    }
+    .features-details ul {
+      list-style-type: disc;
+      margin-left: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .features-details ul li {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: #ccc;
+    }
+    /* Fade in with blur effect for this section */
+    @keyframes fadeInBlur {
+      0% { opacity: 0; filter: blur(5px); }
+      100% { opacity: 1; filter: blur(0px); }
+    }
+    .animate-blur {
+      animation: fadeInBlur 1s ease forwards;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--card-bg);
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    /* Utility Animation Class */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+
+<style>
+    .gradient-header {
+        background: linear-gradient(to right, #007acc, #ff4081);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 3rem;
+        margin-bottom: 2rem;
+        font-weight: 700;
+        text-align: center;
+    }
+    .sub-header {
+        font-size: 1.75rem;
+        margin: 1rem 0;
+        font-weight: 500;
+        color: #fff;
+        text-align: center;
+    }
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        padding: 2rem 0;
+    }
+    .feature-card {
+        background: linear-gradient(135deg, #007acc, #ff4081);
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        color: #fff;
+    }
+    .feature-card h4 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .steps {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 2rem;
+    }
+    .step {
+        background: rgba(26, 26, 26, 0.9);
+        padding: 1.5rem;
+        margin: 1rem 0;
+        border-radius: 12px;
+        width: 80%;
+        max-width: 600px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+    .step h4 {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+    }
+    .how-it-works-text {
+        font-size: 1.3rem;
+        text-align: center;
+        color: #ddd;
+        margin-bottom: 2rem;
+    }
+</style>
+
+
+<style>
+    /* Pricing Section */
+    .pricing {
+        padding: 5rem 0;
+        background: linear-gradient(180deg, #111, #222);
+        text-align: center;
+    }
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        justify-content: center;
+        align-items: start;
+    }
+    .pricing-card {
+        background: rgba(26, 26, 26, 0.9);
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        color: #eee;
+    }
+    .pricing-card h3 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+    .pricing-card .price {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: var(--accent-color);
+    }
+    .pricing-card ul {
+        list-style: none;
+        padding: 0;
+    }
+    .pricing-card ul li {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+    .pricing-card .btn {
+        margin-top: 1.5rem;
+        padding: 0.8rem 1.5rem;
+        border-radius: 50px;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: #fff;
+        border: none;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .pricing-card .btn:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+        background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    }
+    .pricing-card.premium {
+        background: linear-gradient(135deg, #007acc, #ff4081);
+        color: #fff;
+        padding: 2.5rem;
+    }
+    .pricing-card.premium .btn-premium {
+        background: #ff4081;
+        color: #fff;
+    }
+    .pricing-card.premium .btn-premium:hover {
+        background: #ff006e;
+    }
+</style>
+
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header id="header">
+    <div class="container">
+        <h1>JobApply AI</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="job-finder.html">Job Finder</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="applications.html">Applications</a>
+            <a href="profile.html">Profile</a>
+            <a href="settings.html">Settings</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-content container">
+      <h1>Let AI Land Your Dream Job</h1>
+      <p>
+        Experience automated, personalized job applications with AI‑powered cover letters and resumes.
+      </p>
+      <button onclick="document.getElementById('features-details').scrollIntoView({ behavior: 'smooth' });">Get Started</button>
+    </div>
+  </section>
+
+  <!-- New Section: Our Features & How It Works -->
+  
+<section id="features-details" class="features-details animate-on-scroll animate-blur">
+    <div class="container">
+        <h2 class="gradient-header">🌟 Our Features</h2>
+        <h3 class="sub-header">🚀 Advanced Job Matching • 🎯 AI‑Powered Documents • 🤖 Automated Submissions</h3>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h4>✨ Smart Resume Optimization</h4>
+                <p>Our AI refines your resume for each job, ensuring maximum visibility and effectiveness.</p>
+            </div>
+            <div class="feature-card">
+                <h4>✍️ AI-Generated Cover Letters</h4>
+                <p>Instantly crafted, personalized cover letters tailored to each job you apply for.</p>
+            </div>
+            <div class="feature-card">
+                <h4>⚡ One-Click Applications</h4>
+                <p>Apply to jobs seamlessly with a single click, eliminating tedious form-filling.</p>
+            </div>
+            <div class="feature-card">
+                <h4>📡 Real-Time Employer Responses</h4>
+                <p>Stay updated with instant notifications when employers show interest in your profile.</p>
+            </div>
+        </div>
+        <h2 class="gradient-header">🔍 How It Works</h2>
+        <p class="how-it-works-text">
+            Our system leverages cutting‑edge AI to scan thousands of job listings and match them to your skills. With deep-learning resume analysis, personalized cover letter generation, and automated submissions, you can sit back and let AI do the hard work.
+        </p>
+        <div class="steps">
+            <div class="step">
+                <h4>1️⃣ Set Your Preferences</h4>
+                <p>Define your job preferences, salary expectations, and work location.</p>
+            </div>
+            <div class="step">
+                <h4>2️⃣ AI Matches You</h4>
+                <p>Our smart algorithm finds the best-fit jobs based on your skills and background.</p>
+            </div>
+            <div class="step">
+                <h4>3️⃣ AI Applies for You</h4>
+                <p>AI-generated resumes and cover letters are sent instantly to recruiters.</p>
+            </div>
+            <div class="step">
+                <h4>4️⃣ Track & Get Hired</h4>
+                <p>Receive real-time updates and manage applications effortlessly.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+  
+
+ 
+  
+<section id="pricing" class="pricing animate-on-scroll">
+    <div class="container">
+        <h2 class="gradient-header">💰 Choose Your Plan</h2>
+        <p class="sub-header">Find the plan that fits your job search needs.</p>
+        <div class="pricing-grid">
+            <!-- Free Plan -->
+            <div class="pricing-card">
+                <h3>🎉 Free Plan</h3>
+                <p class="price">$0 / month</p>
+                <ul>
+                    <li>🔹 Manual Job Applications</li>
+                    <li>🔹 Basic Resume Storage</li>
+                    <li>🔹 Limited Job Matching</li>
+                    <li>❌ AI Cover Letter Generation</li>
+                    <li>❌ Automated Applications</li>
+                    <li>❌ Priority Job Alerts</li>
+                </ul>
+                <button class="btn" onclick="window.location.href='register.html';">Get Started</button>
+            </div>
+            <!-- Premium Plan -->
+            <div class="pricing-card premium">
+                <h3>🚀 Premium Plan</h3>
+                <p class="price">$19.99 / month</p>
+                <ul>
+                    <li>✅ AI-Powered Job Matching</li>
+                    <li>✅ AI Cover Letter Generation</li>
+                    <li>✅ Automated Applications</li>
+                    <li>✅ Priority Job Alerts</li>
+                    <li>✅ Personalized Resume Suggestions</li>
+                    <li>✅ Real-Time Employer Notifications</li>
+                </ul>
+                <button class="btn btn-premium" onclick="window.location.href='register.html';">Upgrade Now</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-links">
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">AI Text Generator</a></li>
+                    <li><a href="#">Paraphrasing Tool</a></li>
+                    <li><a href="#">Title Generator</a></li>
+                    <li><a href="#">Sentence Rewriter</a></li>
+                    <li><a href="#">Word Counter Tool</a></li>
+                    <li><a href="#">Proofreader</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">Main Page</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Newsroom</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Cookie Settings</a></li>
+                    <li><a href="#">Do Not Sell My Personal Info</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Follow Us</h4>
+                <ul class="social-links">
+                    <li><a href="#">X (Twitter)</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">YouTube</a></li>
+                    <li><a href="#">Pinterest</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 JobApply AI. All Rights Reserved.</p>
+            <p>Harvard Business Class Project</p>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .footer-container {
+        background: #222;
+        padding: 3rem 1rem;
+        color: #ddd;
+        text-align: center;
+    }
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 3rem;
+    }
+    .footer-column {
+        min-width: 200px;
+    }
+    .footer-column h4 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+        color: #fff;
+    }
+    .footer-column ul {
+        list-style: none;
+        padding: 0;
+    }
+    .footer-column ul li {
+        margin-bottom: 0.5rem;
+    }
+    .footer-column ul li a {
+        color: #ddd;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    .footer-column ul li a:hover {
+        color: var(--accent-color);
+    }
+    .social-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer-bottom {
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        color: #bbb;
+    }
+</style>
+
+
+  <script>
+    // Shrink header on scroll
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('header');
+      header.classList.toggle('shrink', window.scrollY > 50);
+    });
+    // Intersection Observer to trigger scroll animations
+    document.addEventListener('DOMContentLoaded', function() {
+      const scrollElements = document.querySelectorAll('.animate-on-scroll');
+      const elementInView = (el, dividend = 1) => {
+        const elementTop = el.getBoundingClientRect().top;
+        return elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend;
+      };
+      const displayScrollElement = (element) => element.classList.add('visible');
+      const handleScrollAnimation = () => {
+        scrollElements.forEach(el => {
+          if (elementInView(el, 1.25)) {
+            displayScrollElement(el);
+          }
+        });
+      };
+      window.addEventListener('scroll', handleScrollAnimation);
+      handleScrollAnimation();
+    });
+  </script>
+
+
+<style>
+    .footer-container {
+        background: #222;
+        padding: 3rem 1rem;
+        color: #ddd;
+        text-align: center;
+    }
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 3rem;
+    }
+    .footer-column {
+        min-width: 200px;
+    }
+    .footer-column h4 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+        color: #fff;
+    }
+    .footer-column ul {
+        list-style: none;
+        padding: 0;
+    }
+    .footer-column ul li {
+        margin-bottom: 0.5rem;
+    }
+    .footer-column ul li a {
+        color: #ddd;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    .footer-column ul li a:hover {
+        color: var(--accent-color);
+    }
+    .social-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer-bottom {
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        color: #bbb;
+    }
+</style>

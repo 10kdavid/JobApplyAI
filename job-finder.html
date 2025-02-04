@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JobApply AI - Job Finder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #007acc;
+      --secondary-color: #005fa3;
+      --accent-color: #ff4081;
+      --background-color: #111;
+      --card-bg: rgba(26,26,26,0.9);
+      --text-color: #eee;
+      --header-bg: rgba(0, 0, 0, 0.85);
+      --transition-speed: 0.4s;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { font-family: 'Poppins', sans-serif; background: var(--background-color); color: var(--text-color); line-height: 1.6; }
+    a { color: var(--text-color); text-decoration: none; transition: color var(--transition-speed) ease; }
+    a:hover { color: var(--accent-color); }
+    .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+
+    /* Header */
+    header { position: fixed; top: 0; width: 100%; background: var(--header-bg); padding: 1.2rem 0; z-index: 1000; backdrop-filter: blur(5px); transition: padding var(--transition-speed) ease; box-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+    header .container { display: flex; justify-content: space-between; align-items: center; }
+    header h1 { font-size: 1.8rem; letter-spacing: 1px; background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    /* Job Finder Section */
+    .job-finder { padding: 5rem 0; margin-top: 4.5rem; text-align: center; }
+    .job-finder form {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+      margin: 1.5rem auto;
+      max-width: 500px;
+      text-align: left;
+    }
+    .job-finder form label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+    .job-finder form input, 
+    .job-finder form select {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 6px;
+      background: #222;
+      color: #eee;
+    }
+    /* New options added for a tighter search: */
+    <!-– Job Type ––>
+    .job-finder form label[for="jobType"] { margin-top: 1rem; }
+    .job-finder form select#jobType { margin-bottom: 1rem; }
+    <!-– Experience Level ––>
+    .job-finder form label[for="experienceLevel"] { margin-top: 1rem; }
+    .job-finder form select#experienceLevel { margin-bottom: 1rem; }
+    <!-– Remote Only Checkbox ––>
+    .job-finder form label[for="remoteOnly"] { margin-top: 1rem; display: inline-block; }
+    .job-finder form input#remoteOnly { margin-left: 0.5rem; vertical-align: middle; margin-bottom: 1rem; }
+    <!-– Distance Slider ––>
+    .job-finder form label[for="distance"] { margin-top: 1rem; }
+    .job-finder form input#distance { margin-bottom: 1rem; }
+    
+    /* Changed the Desired Pay slider to represent an hourly rate */
+    .job-finder form label[for="desiredPay"] { font-weight: 600; }
+    .job-finder form input[type="range"] { width: 100%; margin: 0.5rem 0 1rem; }
+    .job-finder form .range-value { font-weight: 600; margin-bottom: 1rem; text-align: right; }
+    .search-btn {
+      background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+      border: none;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+    .search-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+      background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+    }
+
+    /* Job Results */
+    .results { padding: 3rem 0; text-align: center; }
+    .job-card {
+      background: #222;
+      padding: 1.5rem;
+      margin: 1rem auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+      text-align: left;
+      width: 80%;
+    }
+    .job-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .job-card p { font-size: 1rem; margin-bottom: 1rem; color: #ccc; }
+  </style>
+</head>
+<body>
+
+  <!-- Header / Navigation -->
+  <header id="header">
+    <div class="container">
+        <h1>JobApply AI</h1>
+        <nav>
+            <a href="index.html">Home</a> &nbsp;&nbsp;&nbsp;
+            <a href="about.html">About</a> &nbsp;&nbsp;&nbsp;
+            <a href="job-finder.html">Job Finder</a> &nbsp;&nbsp;&nbsp;
+            <a href="dashboard.html">Dashboard</a> &nbsp;&nbsp;&nbsp;
+            <a href="applications.html">Applications</a> &nbsp;&nbsp;&nbsp;
+            <a href="profile.html">Profile</a> &nbsp;&nbsp;&nbsp;
+            <a href="settings.html">Settings</a> &nbsp;&nbsp;&nbsp;
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+  <!-- Job Finder Section -->
+  <section class="job-finder">
+    <div class="container">
+      <h2>Find Jobs Near You</h2>
+      <form id="jobSearchForm">
+        <label for="zipcode">Enter Your Zipcode:</label>
+        <input type="text" id="zipcode" name="zipcode" placeholder="e.g. 90210" required />
+
+        <!-- New Option: Job Type -->
+        <label for="jobType">Job Type:</label>
+        <select id="jobType" name="jobType">
+          <option value="">Any</option>
+          <option value="fulltime">Full-Time</option>
+          <option value="parttime">Part-Time</option>
+          <option value="contract">Contract</option>
+          <option value="internship">Internship</option>
+        </select>
+
+        <!-- New Option: Experience Level -->
+        <label for="experienceLevel">Experience Level:</label>
+        <select id="experienceLevel" name="experienceLevel">
+          <option value="">Any</option>
+          <option value="entry">Entry-Level</option>
+          <option value="mid">Mid-Level</option>
+          <option value="senior">Senior-Level</option>
+          <option value="executive">Executive</option>
+        </select>
+
+        <!-- New Option: Remote Only -->
+        <label for="remoteOnly">Remote Only:</label>
+        <input type="checkbox" id="remoteOnly" name="remoteOnly" />
+
+        <!-- New Option: Distance -->
+        <label for="distance">Distance (miles): <span id="distanceDisplay">10</span></label>
+        <input type="range" id="distance" name="distance" min="1" max="50" value="10" step="1" />
+
+        
+<label for="minPay">Minimum Desired Pay ($/hr): <span id="minPayDisplay">15</span></label>
+<input type="range" id="minPay" name="minPay" min="5" max="100" value="15" step="1" />
+<script>
+    document.getElementById("minPay").addEventListener("input", function() {
+        document.getElementById("minPayDisplay").textContent = this.value;
+    });
+</script>
+
+<label for="jobTitle">Job Title:</label>
+        <input type="text" id="jobTitle" name="jobTitle" placeholder="e.g. Software Engineer" required />
+
+        <button type="submit" class="search-btn">🔍 Search Jobs</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section class="results">
+    <div class="container">
+      <h2>Available Jobs</h2>
+      <div id="jobResults"></div>
+    </div>
+  </section>
+
+  <script>
+    const API_KEY = "AIzaSyCyUVofK8da1kUj65PsF_CTONMXPAI9Z2g";
+    const SEARCH_ENGINE_ID = "656d5c45f9b784df7";
+
+    document.getElementById("jobSearchForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const zipcode = document.getElementById("zipcode").value;
+      const jobTitle = document.getElementById("jobTitle").value;
+      const jobType = document.getElementById("jobType").value;
+      const experienceLevel = document.getElementById("experienceLevel").value;
+      const remoteOnly = document.getElementById("remoteOnly").checked;
+      const distance = document.getElementById("distance").value;
+
+      if (!zipcode || !jobTitle) {
+        alert("Please enter a job title and zipcode.");
+        return;
+      }
+
+      // Build the query string with additional options
+      let query = `${jobTitle} jobs near ${zipcode}`;
+      if (jobType) query += ` ${jobType}`;
+      if (experienceLevel) query += ` ${experienceLevel}`;
+      if (remoteOnly) query += ` remote`;
+      if (distance) query += ` within ${distance} miles`;
+
+      const url = `https://www.googleapis.com/customsearch/v1?q=${encodeURIComponent(query)}&cx=${SEARCH_ENGINE_ID}&key=${API_KEY}`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const jobResults = document.getElementById("jobResults");
+          jobResults.innerHTML = "";
+
+          if (!data.items || data.items.length === 0) {
+            jobResults.innerHTML = "<p>No jobs found. Try adjusting your search criteria.</p>";
+            return;
+          }
+
+          data.items.forEach(job => {
+            const jobCard = document.createElement("div");
+            jobCard.className = "job-card";
+            jobCard.innerHTML = `
+              <h3>${job.title || "Job Title Not Available"}</h3>
+              <p><strong>Source:</strong> ${job.displayLink || "Unknown"}</p>
+              <p>${job.snippet || "No description available."}</p>
+              <a href="${job.link}" target="_blank" class="search-btn">View Job</a>
+            `;
+            jobResults.appendChild(jobCard);
+          });
+        })
+        .catch(error => {
+          console.error("Error fetching jobs:", error);
+          alert("Error searching for jobs.");
+        });
+    });
+
+    // Update slider display for distance
+    const distanceSlider = document.getElementById("distance");
+    const distanceDisplay = document.getElementById("distanceDisplay");
+    distanceSlider.addEventListener("input", function() {
+      distanceDisplay.textContent = this.value;
+    });
+  </script>
+
+</body>
+</html>

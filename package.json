@@ -1,0 +1,21 @@
+
+{
+  "name": "jobapply-ai-backend",
+  "version": "1.0.0",
+  "description": "Backend for JobApply AI user authentication",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "bcrypt": "^5.0.1",
+    "mongoose": "^6.0.14",
+    "jsonwebtoken": "^9.0.0",
+    "dotenv": "^16.0.3"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
