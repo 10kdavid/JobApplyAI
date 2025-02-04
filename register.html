@@ -93,6 +93,8 @@
                 return;
             }
 
+            console.log("Registering user:", username, email); // Debug log
+
             try {
                 const response = await fetch("https://jobapply-ai.onrender.com/register", {
                     method: "POST",
@@ -100,16 +102,20 @@
                     body: JSON.stringify({ username, email, password })
                 });
 
+                console.log("Response received:", response); // Debug log
+
                 const data = await response.json();
+
                 if (response.ok) {
                     alert("Registration successful! Redirecting to login.");
                     window.location.href = "login.html";
                 } else {
-                    alert(data.error);
+                    alert("Error: " + data.error);
+                    console.error("Registration error:", data);
                 }
             } catch (error) {
-                console.error("Error:", error);
                 alert("Failed to register. Please try again.");
+                console.error("Fetch error:", error);
             }
         }
     </script>
