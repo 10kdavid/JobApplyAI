@@ -11,10 +11,14 @@ const PORT = process.env.PORT || 5000;
 const SECRET_KEY = process.env.SECRET_KEY || "your_secret_key";
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: "https://job-apply-ai.vercel.app", // Allow requests from Vercel frontend
+    methods: ["GET", "POST"],
+    credentials: true
+}));
 
 // Connect to MongoDB Atlas
-mongoose.connect('mongodb+srv://davidyeet25:YTORfbsDS47u7Nr1@cluster0.lk68j.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => console.log("Connected to MongoDB Atlas"))
@@ -56,17 +60,9 @@ app.post('/login', async (req, res) => {
     res.status(200).json({ message: "Login successful", token });
 });
 
-// Protected route (Example: Dashboard)
-app.get('/dashboard', (req, res) => {
-    const token = req.headers.authorization;
-    if (!token) return res.status(403).json({ error: "Access denied" });
-
-    try {
-        const decoded = jwt.verify(token, SECRET_KEY);
-        res.status(200).json({ message: `Welcome to the dashboard, ${decoded.email}` });
-    } catch (error) {
-        res.status(401).json({ error: "Invalid token" });
-    }
+// Test route to verify server is working
+app.get('/', (req, res) => {
+    res.send("API is working!");
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
