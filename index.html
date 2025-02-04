@@ -88,6 +88,31 @@
       font-size: 1rem;
     }
 
+    /* X Logo Banner (formerly Twitter) */
+    .x-banner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 1.5rem;
+    }
+    .x-banner a {
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      color: inherit;
+    }
+    .x-banner svg {
+      width: 50px;
+      height: 50px;
+      fill: currentColor;
+    }
+    .x-banner span {
+      font-size: 1.2rem;
+      margin-left: 0.5rem;
+      font-weight: bold;
+      color: inherit;
+    }
+
     /* Hero Section (Solid Black Background) */
     .hero {
       height: 100vh;
@@ -96,7 +121,7 @@
       justify-content: center;
       text-align: center;
       background: #000;
-      margin-top: 4.5rem; /* Offset for fixed header */
+      margin-top: 5.5rem; /* Offset for fixed header */
     }
     .hero-content {
       position: relative;
@@ -131,7 +156,7 @@
       transform: translateY(2px);
     }
 
-    /* New Section: Features & How It Works (Left Aligned) */
+    /* Features Section */
     .features-details {
       padding: 4rem 0;
       background: var(--background-color);
@@ -139,9 +164,8 @@
     .features-details .container {
       max-width: 800px;
       margin: 0 auto;
-      text-align: left; /* Left-align the text */
+      text-align: left;
     }
-    /* Gradient headers with stronger blue-to-pink */
     .gradient-header {
       background: linear-gradient(to right, #007acc, #ff4081);
       -webkit-background-clip: text;
@@ -172,7 +196,6 @@
       margin-bottom: 0.5rem;
       color: #ccc;
     }
-    /* Fade in with blur effect for this section */
     @keyframes fadeInBlur {
       0% { opacity: 0; filter: blur(5px); }
       100% { opacity: 1; filter: blur(0px); }
@@ -189,8 +212,6 @@
       font-size: 0.9rem;
       color: #aaa;
     }
-
-    /* Utility Animation Class */
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
@@ -205,159 +226,158 @@
       transform: translateY(0);
     }
   </style>
-
-<style>
+  
+  <!-- Additional CSS for later sections -->
+  <style>
     .gradient-header {
-        background: linear-gradient(to right, #007acc, #ff4081);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-size: 3rem;
-        margin-bottom: 2rem;
-        font-weight: 700;
-        text-align: center;
+      background: linear-gradient(to right, #007acc, #ff4081);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      font-weight: 700;
+      text-align: center;
     }
     .sub-header {
-        font-size: 1.75rem;
-        margin: 1rem 0;
-        font-weight: 500;
-        color: #fff;
-        text-align: center;
+      font-size: 1.75rem;
+      margin: 1rem 0;
+      font-weight: 500;
+      color: #fff;
+      text-align: center;
     }
     .feature-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.5rem;
-        padding: 2rem 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem 0;
     }
     .feature-card {
-        background: linear-gradient(135deg, #007acc, #ff4081);
-        padding: 1.5rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-        text-align: center;
-        color: #fff;
+      background: linear-gradient(135deg, #007acc, #ff4081);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      color: #fff;
     }
     .feature-card h4 {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
     }
     .steps {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 2rem;
     }
     .step {
-        background: rgba(26, 26, 26, 0.9);
-        padding: 1.5rem;
-        margin: 1rem 0;
-        border-radius: 12px;
-        width: 80%;
-        max-width: 600px;
-        text-align: center;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      background: rgba(26, 26, 26, 0.9);
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-radius: 12px;
+      width: 80%;
+      max-width: 600px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     }
     .step h4 {
-        font-size: 1.4rem;
-        margin-bottom: 0.5rem;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
     }
     .how-it-works-text {
-        font-size: 1.3rem;
-        text-align: center;
-        color: #ddd;
-        margin-bottom: 2rem;
+      font-size: 1.3rem;
+      text-align: center;
+      color: #ddd;
+      margin-bottom: 2rem;
     }
-</style>
-
-
-<style>
+  </style>
+  
+  <style>
     /* Pricing Section */
     .pricing {
-        padding: 5rem 0;
-        background: linear-gradient(180deg, #111, #222);
-        text-align: center;
+      padding: 5rem 0;
+      background: linear-gradient(180deg, #111, #222);
+      text-align: center;
     }
     .pricing-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-        justify-content: center;
-        align-items: start;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      justify-content: center;
+      align-items: start;
     }
     .pricing-card {
-        background: rgba(26, 26, 26, 0.9);
-        padding: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-        text-align: center;
-        color: #eee;
+      background: rgba(26, 26, 26, 0.9);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      color: #eee;
     }
     .pricing-card h3 {
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
     }
     .pricing-card .price {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        color: var(--accent-color);
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--accent-color);
     }
     .pricing-card ul {
-        list-style: none;
-        padding: 0;
+      list-style: none;
+      padding: 0;
     }
     .pricing-card ul li {
-        font-size: 1.1rem;
-        margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
     }
     .pricing-card .btn {
-        margin-top: 1.5rem;
-        padding: 0.8rem 1.5rem;
-        border-radius: 50px;
-        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        color: #fff;
-        border: none;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      margin-top: 1.5rem;
+      padding: 0.8rem 1.5rem;
+      border-radius: 50px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: #fff;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .pricing-card .btn:hover {
-        transform: translateY(-5px) scale(1.05);
-        box-shadow: 0 8px 16px rgba(0,0,0,0.5);
-        background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
     }
     .pricing-card.premium {
-        background: linear-gradient(135deg, #007acc, #ff4081);
-        color: #fff;
-        padding: 2.5rem;
+      background: linear-gradient(135deg, #007acc, #ff4081);
+      color: #fff;
+      padding: 2.5rem;
     }
     .pricing-card.premium .btn-premium {
-        background: #ff4081;
-        color: #fff;
+      background: #ff4081;
+      color: #fff;
     }
     .pricing-card.premium .btn-premium:hover {
-        background: #ff006e;
+      background: #ff006e;
     }
-</style>
-
+  </style>
 </head>
 <body>
   <!-- Header / Navigation -->
   <header id="header">
     <div class="container">
-        <h1>JobApply AI</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="job-finder.html">Job Finder</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="applications.html">Applications</a>
-            <a href="profile.html">Profile</a>
-            <a href="settings.html">Settings</a>
-            <a href="contact.html">Contact</a>
-        </nav>
+      <h1>JobApply AI</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="job-finder.html">Job Finder</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="applications.html">Applications</a>
+        <a href="profile.html">Profile</a>
+        <a href="settings.html">Settings</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </div>
-</header>
+  </header>
 
   <!-- Hero Section -->
   <section class="hero" id="hero">
@@ -367,193 +387,199 @@
         Experience automated, personalized job applications with AI‑powered cover letters and resumes.
       </p>
       <button onclick="document.getElementById('features-details').scrollIntoView({ behavior: 'smooth' });">Get Started</button>
+      
+      <!-- X Logo Banner placed under the Get Started button -->
+      <div class="x-banner">
+        <a href="https://x.com/JobApplyAI" target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50">
+            <line x1="5" y1="5" x2="45" y2="45" stroke="currentColor" stroke-width="5" stroke-linecap="round" />
+            <line x1="45" y1="5" x2="5" y2="45" stroke="currentColor" stroke-width="5" stroke-linecap="round" />
+          </svg>
+          <span>Follow us on X</span>
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- New Section: Our Features & How It Works -->
-  
-<section id="features-details" class="features-details animate-on-scroll animate-blur">
+  <!-- Our Features & How It Works -->
+  <section id="features-details" class="features-details animate-on-scroll animate-blur">
     <div class="container">
-        <h2 class="gradient-header">🌟 Our Features</h2>
-        <h3 class="sub-header">🚀 Advanced Job Matching • 🎯 AI‑Powered Documents • 🤖 Automated Submissions</h3>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <h4>✨ Smart Resume Optimization</h4>
-                <p>Our AI refines your resume for each job, ensuring maximum visibility and effectiveness.</p>
-            </div>
-            <div class="feature-card">
-                <h4>✍️ AI-Generated Cover Letters</h4>
-                <p>Instantly crafted, personalized cover letters tailored to each job you apply for.</p>
-            </div>
-            <div class="feature-card">
-                <h4>⚡ One-Click Applications</h4>
-                <p>Apply to jobs seamlessly with a single click, eliminating tedious form-filling.</p>
-            </div>
-            <div class="feature-card">
-                <h4>📡 Real-Time Employer Responses</h4>
-                <p>Stay updated with instant notifications when employers show interest in your profile.</p>
-            </div>
+      <h2 class="gradient-header">🌟 Our Features</h2>
+      <h3 class="sub-header">🚀 Advanced Job Matching • 🎯 AI‑Powered Documents • 🤖 Automated Submissions</h3>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <h4>✨ Smart Resume Optimization</h4>
+          <p>Our AI refines your resume for each job, ensuring maximum visibility and effectiveness.</p>
         </div>
-        <h2 class="gradient-header">🔍 How It Works</h2>
-        <p class="how-it-works-text">
-            Our system leverages cutting‑edge AI to scan thousands of job listings and match them to your skills. With deep-learning resume analysis, personalized cover letter generation, and automated submissions, you can sit back and let AI do the hard work.
-        </p>
-        <div class="steps">
-            <div class="step">
-                <h4>1️⃣ Set Your Preferences</h4>
-                <p>Define your job preferences, salary expectations, and work location.</p>
-            </div>
-            <div class="step">
-                <h4>2️⃣ AI Matches You</h4>
-                <p>Our smart algorithm finds the best-fit jobs based on your skills and background.</p>
-            </div>
-            <div class="step">
-                <h4>3️⃣ AI Applies for You</h4>
-                <p>AI-generated resumes and cover letters are sent instantly to recruiters.</p>
-            </div>
-            <div class="step">
-                <h4>4️⃣ Track & Get Hired</h4>
-                <p>Receive real-time updates and manage applications effortlessly.</p>
-            </div>
+        <div class="feature-card">
+          <h4>✍️ AI-Generated Cover Letters</h4>
+          <p>Instantly crafted, personalized cover letters tailored to each job you apply for.</p>
         </div>
+        <div class="feature-card">
+          <h4>⚡ One-Click Applications</h4>
+          <p>Apply to jobs seamlessly with a single click, eliminating tedious form-filling.</p>
+        </div>
+        <div class="feature-card">
+          <h4>📡 Real-Time Employer Responses</h4>
+          <p>Stay updated with instant notifications when employers show interest in your profile.</p>
+        </div>
+      </div>
+      <h2 class="gradient-header">🔍 How It Works</h2>
+      <p class="how-it-works-text">
+        Our system leverages cutting‑edge AI to scan thousands of job listings and match them to your skills. With deep-learning resume analysis, personalized cover letter generation, and automated submissions, you can sit back and let AI do the hard work.
+      </p>
+      <div class="steps">
+        <div class="step">
+          <h4>1️⃣ Set Your Preferences</h4>
+          <p>Define your job preferences, salary expectations, and work location.</p>
+        </div>
+        <div class="step">
+          <h4>2️⃣ AI Matches You</h4>
+          <p>Our smart algorithm finds the best-fit jobs based on your skills and background.</p>
+        </div>
+        <div class="step">
+          <h4>3️⃣ AI Applies for You</h4>
+          <p>AI-generated resumes and cover letters are sent instantly to recruiters.</p>
+        </div>
+        <div class="step">
+          <h4>4️⃣ Track & Get Hired</h4>
+          <p>Receive real-time updates and manage applications effortlessly.</p>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 
-  
-
- 
-  
-<section id="pricing" class="pricing animate-on-scroll">
+  <!-- Pricing Section -->
+  <section id="pricing" class="pricing animate-on-scroll">
     <div class="container">
-        <h2 class="gradient-header">💰 Choose Your Plan</h2>
-        <p class="sub-header">Find the plan that fits your job search needs.</p>
-        <div class="pricing-grid">
-            <!-- Free Plan -->
-            <div class="pricing-card">
-                <h3>🎉 Free Plan</h3>
-                <p class="price">$0 / month</p>
-                <ul>
-                    <li>🔹 Manual Job Applications</li>
-                    <li>🔹 Basic Resume Storage</li>
-                    <li>🔹 Limited Job Matching</li>
-                    <li>❌ AI Cover Letter Generation</li>
-                    <li>❌ Automated Applications</li>
-                    <li>❌ Priority Job Alerts</li>
-                </ul>
-                <button class="btn" onclick="window.location.href='register.html';">Get Started</button>
-            </div>
-            <!-- Premium Plan -->
-            <div class="pricing-card premium">
-                <h3>🚀 Premium Plan</h3>
-                <p class="price">$19.99 / month</p>
-                <ul>
-                    <li>✅ AI-Powered Job Matching</li>
-                    <li>✅ AI Cover Letter Generation</li>
-                    <li>✅ Automated Applications</li>
-                    <li>✅ Priority Job Alerts</li>
-                    <li>✅ Personalized Resume Suggestions</li>
-                    <li>✅ Real-Time Employer Notifications</li>
-                </ul>
-                <button class="btn btn-premium" onclick="window.location.href='register.html';">Upgrade Now</button>
-            </div>
+      <h2 class="gradient-header">💰 Choose Your Plan</h2>
+      <p class="sub-header">Find the plan that fits your job search needs.</p>
+      <div class="pricing-grid">
+        <!-- Free Plan -->
+        <div class="pricing-card">
+          <h3>🎉 Free Plan</h3>
+          <p class="price">$0 / month</p>
+          <ul>
+            <li>🔹 Manual Job Applications</li>
+            <li>🔹 Basic Resume Storage</li>
+            <li>🔹 Limited Job Matching</li>
+            <li>❌ AI Cover Letter Generation</li>
+            <li>❌ Automated Applications</li>
+            <li>❌ Priority Job Alerts</li>
+          </ul>
+          <button class="btn" onclick="document.getElementById('features-details').scrollIntoView({behavior: 'smooth'});">Get Started</button>
         </div>
+        <!-- Premium Plan -->
+        <div class="pricing-card premium">
+          <h3>🚀 Premium Plan</h3>
+          <p class="price">$19.99 / month</p>
+          <ul>
+            <li>✅ AI-Powered Job Matching</li>
+            <li>✅ AI Cover Letter Generation</li>
+            <li>✅ Automated Applications</li>
+            <li>✅ Priority Job Alerts</li>
+            <li>✅ Personalized Resume Suggestions</li>
+            <li>✅ Real-Time Employer Notifications</li>
+          </ul>
+          <button class="btn btn-premium">Upgrade Now</button>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 
-
-<footer>
+  <!-- Footer -->
+  <footer>
     <div class="footer-container">
-        <div class="footer-links">
-            <div class="footer-column">
-                <h4>Resources</h4>
-                <ul>
-                    <li><a href="#">AI Text Generator</a></li>
-                    <li><a href="#">Paraphrasing Tool</a></li>
-                    <li><a href="#">Title Generator</a></li>
-                    <li><a href="#">Sentence Rewriter</a></li>
-                    <li><a href="#">Word Counter Tool</a></li>
-                    <li><a href="#">Proofreader</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="#">Main Page</a></li>
-                    <li><a href="#">Features</a></li>
-                    <li><a href="#">Newsroom</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Cookie Settings</a></li>
-                    <li><a href="#">Do Not Sell My Personal Info</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Follow Us</h4>
-                <ul class="social-links">
-                    <li><a href="#">X (Twitter)</a></li>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">LinkedIn</a></li>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">YouTube</a></li>
-                    <li><a href="#">Pinterest</a></li>
-                </ul>
-            </div>
+      <div class="footer-links">
+        <div class="footer-column">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#">AI Text Generator</a></li>
+            <li><a href="#">Paraphrasing Tool</a></li>
+            <li><a href="#">Title Generator</a></li>
+            <li><a href="#">Sentence Rewriter</a></li>
+            <li><a href="#">Word Counter Tool</a></li>
+            <li><a href="#">Proofreader</a></li>
+          </ul>
         </div>
-        <div class="footer-bottom">
-            <p>© 2025 JobApply AI. All Rights Reserved.</p>
-            <p>Harvard Business Class Project</p>
+        <div class="footer-column">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">Main Page</a></li>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Newsroom</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Cookie Settings</a></li>
+            <li><a href="#">Do Not Sell My Personal Info</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
         </div>
+        <div class="footer-column">
+          <h4>Follow Us</h4>
+          <ul class="social-links">
+            <li><a href="#">X (Twitter)</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">YouTube</a></li>
+            <li><a href="#">Pinterest</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 JobApply AI. All Rights Reserved.</p>
+        <p>Harvard Business Class Project</p>
+      </div>
     </div>
-</footer>
+  </footer>
 
-<style>
+  <style>
     .footer-container {
-        background: #222;
-        padding: 3rem 1rem;
-        color: #ddd;
-        text-align: center;
+      background: #222;
+      padding: 3rem 1rem;
+      color: #ddd;
+      text-align: center;
     }
     .footer-links {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 3rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 3rem;
     }
     .footer-column {
-        min-width: 200px;
+      min-width: 200px;
     }
     .footer-column h4 {
-        font-size: 1.4rem;
-        margin-bottom: 1rem;
-        color: #fff;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: #fff;
     }
     .footer-column ul {
-        list-style: none;
-        padding: 0;
+      list-style: none;
+      padding: 0;
     }
     .footer-column ul li {
-        margin-bottom: 0.5rem;
+      margin-bottom: 0.5rem;
     }
     .footer-column ul li a {
-        color: #ddd;
-        text-decoration: none;
-        transition: color 0.3s ease;
+      color: #ddd;
+      text-decoration: none;
+      transition: color 0.3s ease;
     }
     .footer-column ul li a:hover {
-        color: var(--accent-color);
+      color: var(--accent-color);
     }
     .social-links {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .footer-bottom {
-        margin-top: 2rem;
-        font-size: 0.9rem;
-        color: #bbb;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #bbb;
     }
-</style>
-
+  </style>
 
   <script>
     // Shrink header on scroll
@@ -580,52 +606,5 @@
       handleScrollAnimation();
     });
   </script>
-
-
-<style>
-    .footer-container {
-        background: #222;
-        padding: 3rem 1rem;
-        color: #ddd;
-        text-align: center;
-    }
-    .footer-links {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 3rem;
-    }
-    .footer-column {
-        min-width: 200px;
-    }
-    .footer-column h4 {
-        font-size: 1.4rem;
-        margin-bottom: 1rem;
-        color: #fff;
-    }
-    .footer-column ul {
-        list-style: none;
-        padding: 0;
-    }
-    .footer-column ul li {
-        margin-bottom: 0.5rem;
-    }
-    .footer-column ul li a {
-        color: #ddd;
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
-    .footer-column ul li a:hover {
-        color: var(--accent-color);
-    }
-    .social-links {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .footer-bottom {
-        margin-top: 2rem;
-        font-size: 0.9rem;
-        color: #bbb;
-    }
-</style>
+</body>
+</html>
